@@ -4,6 +4,7 @@ import Footer from './Footer'
 import StoreGrids from './StoreGrids'
 
 export default function Stores() {
+  console.log("hi");
   return (
     <div>
         <>
