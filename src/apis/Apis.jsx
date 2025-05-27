@@ -4,10 +4,10 @@ export const getGamesData = async () => {
         if (!response.ok) {
             throw new Error(`HTTP error status: ${response.status}`)
         }
-        const data = response.json();
+        const data = await response.json();
         return data;
     } catch (error) {
-        console.error('something went wrong',error)
+        console.error('something went wrong', error)
     }
 }
 

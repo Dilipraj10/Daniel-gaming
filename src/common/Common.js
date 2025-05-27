@@ -1,0 +1,1 @@
+export const FETCh_GAMES_DATA = 'FETCh_GAMES_DATA'

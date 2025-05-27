@@ -7,24 +7,16 @@ import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShareIcon from '@mui/icons-material/Share';
-import { getGamesData } from '../apis/Apis';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchGamesData } from '../actions/Action';
 
 export default function ResponsiveGrid() {
-  const [gamesData, setGamesData] = useState([]);
-
-  console.log(gamesData);
-
-
+  const dispatch = useDispatch();
+  const gamesData = useSelector(state => state.data)
+  
   useEffect(() => {
-    const fetchData = async () => {
-      const data = await getGamesData();
-      console.log(data);
-      
-      setGamesData(data);
-    };
-
-    fetchData();
-  }, []);
+    dispatch(fetchGamesData())
+  }, [dispatch]);
 
   return (
     <>
