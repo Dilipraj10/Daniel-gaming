@@ -7,6 +7,8 @@ import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { filterDataByOption } from '../actions/Action';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -51,28 +53,33 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 function NavbarUi() {
 
+  const dispatch = useDispatch();
   const navigate = useNavigate();
-  const handleClick = () =>{
-         navigate('/Admin');
-        }
+  const handleClick = () => {
+    navigate('/Admin');
+  }
 
- const handleClick2 = () =>{
-         navigate('/LoginUser');
-        }
+  const handleClick2 = () => {
+    navigate('/LoginUser');
+  }
 
-const handleClick3 = () =>{
-         navigate('/FeedBack');
-        }
+  const handleClick3 = () => {
+    navigate('/FeedBack');
+  }
 
-const handleClick4 = () =>{
-          navigate('/');
-         }
+  const handleClick4 = () => {
+    navigate('/');
+  }
 
-const handleClick5 = () =>{
-          navigate('/Store');
-         }
+  const handleClick5 = () => {
+    navigate('/Store');
+  }
 
-
+  const handleFilter = (option) => {
+    console.log(option);
+    
+    dispatch(filterDataByOption(option))
+  }
 
   return (
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
@@ -93,22 +100,15 @@ const handleClick5 = () =>{
             <Nav.Link onClick={handleClick4} href="" style={{ color: 'white' }}>HOME</Nav.Link>
             <Nav.Link onClick={handleClick5} href="" style={{ color: 'white' }}>STORE</Nav.Link>
             <NavDropdown title="CATEGORIES" id="navbarScrollingDropdown">
-              <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
-              <NavDropdown.Item href="#action4">
-                Another action
-              </NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item href="#action5">
-                Something else here
-              </NavDropdown.Item>
+              <NavDropdown.Item href="#action3" onClick={() => handleFilter('PC')}>PC</NavDropdown.Item>
+              <NavDropdown.Item href="#action4" onClick={() => handleFilter('macOS')}>IOS</NavDropdown.Item>
             </NavDropdown>
             <Nav.Link href="" style={{ color: 'white' }}>CONTACT</Nav.Link>
             <Nav.Link onClick={handleClick3} href="" style={{ color: 'white' }}>FEEDBACK</Nav.Link>
           </Nav>
           <Nav className="ml-auto">
-            <Nav.Link onClick={handleClick2} href="" style={{ color: 'white', marginLeft:'30px'}}>SIGNIN/SIGNUP</Nav.Link>
-            <Nav.Link onClick={handleClick} href="" style={{ color: 'white', marginLeft:'30px'}}>ADMIN</Nav.Link>
-
+            <Nav.Link onClick={handleClick2} href="" style={{ color: 'white', marginLeft: '30px' }}>SIGNIN/SIGNUP</Nav.Link>
+            <Nav.Link onClick={handleClick} href="" style={{ color: 'white', marginLeft: '30px' }}>ADMIN</Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>

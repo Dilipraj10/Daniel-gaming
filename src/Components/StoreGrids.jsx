@@ -18,7 +18,6 @@ import Paper from '@mui/material/Paper';
 export default function ResponsiveGrid() {
   const dispatch = useDispatch();
   const gamesData = useSelector(state => state.data)
-
   useEffect(() => {
     dispatch(fetchGamesData())
   }, [dispatch]);
@@ -36,7 +35,7 @@ export default function ResponsiveGrid() {
 
   return (
     <>
-      <Box sx={{ flexGrow: 1, p:4 }}>
+      <Box sx={{ flexGrow: 1, p: 4 }}>
         <Grid container spacing={1}>
           {gamesData && gamesData.map((data) => {
             return (
@@ -52,6 +51,11 @@ export default function ResponsiveGrid() {
                     <CardContent>
                       <Typography variant="body12" sx={{ color: 'text.secondary' }}>
                         This impressive paella is a perfect party dish and a fun meal to cook
+                      </Typography>
+                    </CardContent>
+                    <CardContent>
+                      <Typography variant="body12" sx={{ color: 'text.secondary' }}>
+                        Game type: {data.platforms[0].name}
                       </Typography>
                     </CardContent>
                     <CardActions disableSpacing>
