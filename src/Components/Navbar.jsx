@@ -8,7 +8,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { filterDataByOption } from '../actions/Action';
+import { setFilterOption } from '../actions/Action';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -76,9 +76,7 @@ function NavbarUi() {
   }
 
   const handleFilter = (option) => {
-    console.log(option);
-    
-    dispatch(filterDataByOption(option))
+    dispatch(setFilterOption(option))
   }
 
   return (

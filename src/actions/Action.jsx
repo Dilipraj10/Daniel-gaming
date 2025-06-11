@@ -1,5 +1,5 @@
 import { getGamesData } from "../apis/Apis"
-import { FETCh_GAMES_DATA, FILTER_DATA_BY_OPTION } from "../common/Constant";
+import { FETCh_GAMES_DATA, SET_FILTER_OPTION } from "../common/Constant";
 
 export const fetchGamesData = () => {
     return async (dispatch) => {
@@ -15,13 +15,11 @@ export const fetchGamesData = () => {
     };
 }
 
-export const filterDataByOption = (option) => {
-    return async (dispatch,getState) => {
-        const state = getState();
-        const filteredData = state.data.filter((data) => data.platforms[0].name.includes(option));
+export const setFilterOption = (option) => {
+    return async (dispatch) => {
         dispatch({
-            type: FILTER_DATA_BY_OPTION,
-            payload: filteredData,
+            type: SET_FILTER_OPTION,
+            payload: option,
         })  
     }
 }
