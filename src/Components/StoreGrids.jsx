@@ -17,10 +17,26 @@ import Paper from '@mui/material/Paper';
 
 export default function ResponsiveGrid() {
   const dispatch = useDispatch();
-  const gamesData = useSelector(state => state.data)
+  const {data, filterOption} = useSelector(state => state);
+  const [filteredGames, setFilteredGames] = useState([]);
+
   useEffect(() => {
     dispatch(fetchGamesData())
   }, [dispatch]);
+
+useEffect(() => {
+  handleFilterDataByOption();
+},[filterOption, data])
+
+  const handleFilterDataByOption = () => {
+   if(filterOption){
+    const filteredData = data.filter(game => game?.platforms[0]?.name.includes(filterOption));
+    setFilteredGames(filteredData);
+   }
+   else{
+    setFilteredGames(data)
+   }
+  }
 
   const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: '#fff',
@@ -37,7 +53,7 @@ export default function ResponsiveGrid() {
     <>
       <Box sx={{ flexGrow: 1, p: 4 }}>
         <Grid container spacing={1}>
-          {gamesData && gamesData.map((data) => {
+          {filteredGames && filteredGames.map((data) => {
             return (
               <Grid size={3}>
                 <Item>
@@ -55,7 +71,7 @@ export default function ResponsiveGrid() {
                     </CardContent>
                     <CardContent>
                       <Typography variant="body12" sx={{ color: 'text.secondary' }}>
-                        Game type: {data.platforms[0].name}
+                        Game type: {data.platforms[0]?.name}
                       </Typography>
                     </CardContent>
                     <CardActions disableSpacing>

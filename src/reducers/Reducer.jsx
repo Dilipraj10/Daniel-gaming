@@ -1,4 +1,4 @@
-import { FETCh_GAMES_DATA, FILTER_DATA_BY_OPTION } from "../common/Constant";
+import { FETCh_GAMES_DATA, SET_FILTER_OPTION } from "../common/Constant";
 
 const initialState = {
     data:[],
@@ -9,8 +9,8 @@ export const reducer = (state = initialState, action) =>  {
     switch(action.type){
         case FETCh_GAMES_DATA :
             return {...state, data:action.payload}
-        case FILTER_DATA_BY_OPTION : 
-            return {...state, data:action.payload}    
+        case SET_FILTER_OPTION : 
+            return {...state, filterOption:action.payload}    
         default : return state;
     }
 }
